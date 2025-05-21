@@ -1,0 +1,32 @@
+<!-- todo/templates/todo/index.html -->
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<a href="{% url 'add_task' %}" class="btn btn-primary mb-3">+ Add Task</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.completed|yesno:"Yes,No" }}</td>
+            <td>
+                <a href="{% url 'edit_task' task.id %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete_task' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No tasks yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

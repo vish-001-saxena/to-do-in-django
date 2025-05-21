@@ -1,0 +1,12 @@
+<!-- todo/templates/todo/add_task.html -->
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<h2>Add New Task</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Add Task</button>
+    <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+</form>
+{% endblock %}
